@@ -4,9 +4,15 @@ const guide = document.getElementById("guide");
 let core;
 const language = createLanguageController(() => core?.refresh());
 const motion = window.matchMedia("(prefers-reduced-motion: reduce)");
+const compact = window.matchMedia(
+  "(max-width: 700px), (hover: none) and (pointer: coarse)",
+);
 let syncingGuide = false;
 
-function syncGuide(scroll = false, behavior = motion.matches ? "instant" : "smooth") {
+function syncGuide(
+  scroll = false,
+  behavior = motion.matches ? "instant" : "smooth",
+) {
   const shouldOpen = location.hash === "#guide";
   syncingGuide = true;
   guide.open = shouldOpen;
@@ -54,24 +60,29 @@ for (const button of document.querySelectorAll(".copy-command"))
 // Keep the text and guide usable even if the 3D module fails to load.
 let loadingCore = false;
 async function loadCore() {
-  if (motion.matches || core || loadingCore) return;
+  if (motion.matches || compact.matches || core || loadingCore) return;
   loadingCore = true;
   try {
     const { createCore } = await import("./core.js");
-    if (!motion.matches) core = createCore();
+    if (!motion.matches && !compact.matches) core = createCore();
   } catch {
     document.querySelector(".scene").dataset.mode = "static";
   } finally {
     loadingCore = false;
   }
 }
-motion.addEventListener("change", () => {
-  if (motion.matches) {
+function syncCore() {
+  if (motion.matches || compact.matches) {
     core?.dispose();
     core = undefined;
+    document.querySelector(".scene").dataset.mode = compact.matches
+      ? "none"
+      : "static";
   } else loadCore();
-});
-loadCore();
+}
+motion.addEventListener("change", syncCore);
+compact.addEventListener("change", syncCore);
+syncCore();
 
 const chapters = [...document.querySelectorAll("[data-stage]")];
 const scene = document.querySelector(".scene");

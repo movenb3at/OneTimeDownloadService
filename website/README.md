@@ -13,6 +13,6 @@
 
 Node.js 24에서 `npm ci`, `npm run build`, `npm run preview`로 확인합니다. 개발은 `npm run dev`를 사용합니다. 기본 경로는 `/OneTimeDownloadService/`입니다. `npm test` 전에 빌드하고 Playwright Chromium을 설치해 주세요. Windows는 설치된 Edge를 사용합니다.
 
-The site bundles pinned Anime.js and Three.js versions without CDN requests. WebGL is loaded separately, and skipped when reduced motion is requested. Rendering occurs when the scene or pointer changes, stops in hidden tabs, and pauses outside the story. Mobile rendering is capped at a 1.2 pixel ratio. The static SVG remains available if WebGL cannot start.
+The site bundles pinned Anime.js and Three.js versions without CDN requests. WebGL is loaded separately. On screens up to 700px wide or devices with a coarse pointer and no hover, the entire scene is hidden and the 3D module is not loaded. Desktop rendering occurs when the scene or pointer changes, stops in hidden tabs, and pauses outside the story. On desktop, reduced motion or WebGL failure uses a static SVG. Resizing between compact and desktop views disposes or restores the model.
 
 The guide can be opened with `#guide`; back/forward navigation restores the open state. `?lang=en` overrides the saved language. Storage and clipboard failures do not prevent reading the guide.

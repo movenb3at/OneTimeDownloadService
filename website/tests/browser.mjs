@@ -160,6 +160,30 @@ try {
   await page.setViewportSize({ width: 1440, height: 900 });
   check("화면 크기 변경 후 스크롤 동기화");
 
+  await page.setViewportSize({ width: 600, height: 850 });
+  await page.waitForFunction(
+    () => document.querySelector(".scene").dataset.mode === "none",
+  );
+  assert.equal(await page.locator("#core-canvas").isVisible(), false);
+  assert.equal(await page.locator(".core-fallback").isVisible(), false);
+  assert.equal(
+    await page
+      .locator("#integrity .section-content")
+      .evaluate((element) => getComputedStyle(element).opacity),
+    "1",
+  );
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await page.waitForFunction(
+    () => document.querySelector(".scene").dataset.mode === "webgl",
+  );
+  await jump(page, "integrity");
+  assert.ok(
+    Math.abs(
+      Number(await page.locator("#core-canvas").getAttribute("data-stage")) - 3,
+    ) < 0.15,
+  );
+  check("좁은 화면에서 모델 정리·본문 표시, 데스크톱 복귀 시 모델 복원");
+
   await page.mouse.move(1350, 750);
   await page.waitForTimeout(300);
   const tiltedFrames = Number(
@@ -294,17 +318,18 @@ try {
   record(phone);
   await phone.goto(base);
   await phone.waitForFunction(
-    () => document.querySelector(".scene").dataset.mode === "webgl",
+    () => document.querySelector(".scene").dataset.mode === "none",
   );
   assert.ok(
     await phone.evaluate(
       () => document.documentElement.scrollWidth <= innerWidth,
     ),
   );
-  assert.ok(
-    await phone
-      .locator("#core-canvas")
-      .evaluate((canvas) => canvas.width <= innerWidth * 1.21),
+  assert.equal(await phone.locator("#core-canvas").isVisible(), false);
+  assert.equal(await phone.locator(".core-fallback").isVisible(), false);
+  assert.equal(
+    await phone.locator("#core-canvas").getAttribute("data-stage"),
+    null,
   );
   await capture(phone, "hero-mobile");
   await jump(phone, "retry");
@@ -324,7 +349,25 @@ try {
       () => document.documentElement.scrollWidth <= innerWidth,
     ),
   );
-  check("390×844 모바일 모델·가이드·언어 전환, 가로 넘침 없음, DPR 제한");
+  assert.ok(
+    !(await phone.evaluate(() =>
+      performance
+        .getEntriesByType("resource")
+        .some((entry) => /\/assets\/core-[^/]+\.js/.test(entry.name)),
+    )),
+  );
+  await phone.setViewportSize({ width: 844, height: 390 });
+  await jump(phone, "hero");
+  assert.equal(await phone.locator(".scene").isVisible(), false);
+  assert.ok(
+    await phone.evaluate(
+      () => document.documentElement.scrollWidth <= innerWidth,
+    ),
+  );
+  await capture(phone, "hero-mobile-landscape");
+  check(
+    "모바일 세로·가로에서 모델·대체 그림 숨김과 3D 모듈 미로딩, 한영 가이드 및 가로 넘침 없음",
+  );
 
   const reduced = await browser.newContext({ reducedMotion: "reduce" });
   const quiet = await reduced.newPage();
