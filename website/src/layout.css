@@ -1,0 +1,246 @@
+@media (min-width: 1600px) {
+  .story-section {
+    padding-left: max(8%, calc((100vw - 1400px) / 2));
+  }
+  .section-index {
+    left: max(8%, calc((100vw - 1400px) / 2));
+  }
+}
+@media (max-width: 1000px) {
+  .wordmark-sub,
+  .wordmark-divider {
+    display: none;
+  }
+  .section-content {
+    width: 48%;
+  }
+  nav {
+    gap: 20px;
+  }
+  .story-section {
+    padding-left: 6%;
+    padding-right: 6%;
+  }
+  #core-canvas {
+    width: 68%;
+    right: -8%;
+  }
+  .section-index {
+    left: 6%;
+  }
+  .chapter-indicator {
+    right: 16px;
+  }
+  .hero-meta {
+    gap: 10px;
+    font-size: 8px;
+  }
+  .hero-meta span + span::before {
+    margin-right: 10px;
+  }
+}
+@media (max-width: 700px) {
+  .site-header {
+    padding: 18px 6%;
+  }
+  nav {
+    gap: 16px;
+    font-size: 11px;
+  }
+  .nav-feature {
+    display: none;
+  }
+  .wordmark {
+    font-size: 20px;
+  }
+  .wordmark img {
+    width: 22px;
+    height: 22px;
+  }
+  .language-switch {
+    gap: 3px;
+  }
+  .story-section {
+    min-height: 100svh;
+    padding: 100px 7% 50px;
+    align-items: flex-start;
+  }
+  .section-content {
+    width: 100%;
+    max-width: 500px;
+  }
+  .hero {
+    padding-top: 126px;
+  }
+  .hero h1 {
+    font-size: 100px;
+    margin-bottom: 18px;
+  }
+  .hero h2 {
+    font-size: 27px;
+    margin-bottom: 20px;
+  }
+  h2 {
+    font-size: 36px;
+    line-height: 1.25;
+    margin-bottom: 20px;
+  }
+  .eyebrow {
+    font-size: 9px;
+    margin-bottom: 20px;
+    letter-spacing: 1.5px;
+  }
+  .section-description {
+    font-size: 13px;
+    line-height: 1.8;
+    max-width: 330px;
+    margin-bottom: 20px;
+  }
+  .hero .section-description {
+    max-width: 310px;
+  }
+  .hero-meta {
+    font-size: 8px;
+  }
+  .detail-note {
+    max-width: 340px;
+    padding-top: 15px;
+  }
+  .detail-note p {
+    font-size: 11px;
+  }
+  .feature-spec {
+    margin-top: 18px;
+    gap: 6px;
+  }
+  .feature-spec > strong {
+    font-size: 48px;
+  }
+  .feature-spec > .hash-spec {
+    font-size: 25px;
+  }
+  .feature-spec > span {
+    font-size: 10px;
+  }
+  .scene::after {
+    background: linear-gradient(
+      #101311 0%,
+      #101311f0 26%,
+      #101311aa 45%,
+      transparent 62%,
+      #10131111 90%
+    );
+  }
+  #core-canvas {
+    width: 100%;
+    height: 58%;
+    top: auto;
+    bottom: -4%;
+    right: 0;
+  }
+  .core-fallback {
+    width: 95vw;
+    top: auto;
+    bottom: -50px;
+    right: 0;
+    transform: none;
+  }
+  .scene-caption {
+    font-size: 7px;
+    right: 7%;
+    bottom: 16px;
+    letter-spacing: 0.7px;
+  }
+  .scene-coordinate {
+    margin-left: 16px;
+  }
+  .chapter-indicator {
+    display: none;
+  }
+  .section-index {
+    left: 7%;
+    font-size: 7px;
+    bottom: 16px;
+  }
+  .scroll-cue {
+    margin-top: 25px;
+    font-size: 10px;
+    gap: 12px;
+  }
+  .scroll-arrow {
+    width: 25px;
+    height: 34px;
+  }
+  .get-started {
+    padding: 85px 7% 65px;
+  }
+  .get-started h2 {
+    font-size: 32px;
+  }
+  .get-started > p:not(.eyebrow) {
+    font-size: 12px;
+  }
+  .cta-group {
+    flex-direction: column;
+    max-width: 330px;
+    margin: 30px auto 24px;
+  }
+  .button {
+    width: 100%;
+    padding: 18px 20px;
+    min-width: 0;
+  }
+  .guide {
+    padding: 0 7%;
+    scroll-margin-top: 80px;
+  }
+  .guide > summary {
+    padding: 30px 0;
+  }
+  .guide-heading {
+    font-size: 21px;
+  }
+  .guide-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  .guide-card {
+    padding: 25px;
+  }
+  .guide-intro {
+    font-size: 12px;
+  }
+  .guide-more {
+    padding: 20px;
+  }
+  footer {
+    padding: 25px 7%;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  footer p {
+    font-size: 8px;
+  }
+  footer p span {
+    margin-left: 10px;
+  }
+}
+@media (max-height: 740px) and (max-width: 700px) {
+  .story-section {
+    min-height: 850px;
+  }
+  .scene::after {
+    background: linear-gradient(
+      #101311 0%,
+      #101311f5 34%,
+      #101311aa 55%,
+      transparent 78%
+    );
+  }
+  .scene-caption {
+    display: none;
+  }
+}
+.guide {
+  scroll-margin-top: 0;
+}

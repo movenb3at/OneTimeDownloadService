@@ -1,0 +1,414 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#101311" />
+    <meta
+      name="description"
+      content="OTDS — 한 링크, 한 브라우저. Windows에서 실행하는 일회성 파일 공유 서비스. 10분 재시도와 SHA-256 검증, 관리자 현황을 제공합니다."
+    />
+    <meta name="referrer" content="no-referrer" />
+    <title>OTDS — 한 번의 전송을 위한 파일 공유</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="alternate icon" href="/favicon.ico" />
+    <link rel="stylesheet" href="/src/style.css" />
+    <link rel="stylesheet" href="/src/layout.css" />
+    <script type="module" src="/src/main.js"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main" data-i18n="skip">본문으로 이동</a>
+    <header class="site-header">
+      <a class="wordmark" href="#" aria-label="OTDS"
+        ><img src="/favicon.svg" width="25" height="25" alt="" />OTDS<span
+          class="wordmark-divider"
+        ></span
+        ><span class="wordmark-sub">ONE TIME<br />DOWNLOAD SERVICE</span></a
+      >
+      <nav aria-label="주 메뉴" data-i18n-aria="navigation">
+        <a class="nav-feature" href="#single" data-i18n="features">주요 특징</a>
+        <a href="#guide" class="guide-link" data-i18n="installation"
+          >설치 가이드</a
+        >
+        <div
+          class="language-switch"
+          role="group"
+          aria-label="언어 선택"
+          data-i18n-aria="language"
+        >
+          <button
+            type="button"
+            data-language="ko"
+            aria-pressed="true"
+            lang="ko"
+          >
+            KO</button
+          ><span>/</span
+          ><button
+            type="button"
+            data-language="en"
+            aria-pressed="false"
+            lang="en"
+          >
+            EN
+          </button>
+        </div>
+      </nav>
+    </header>
+
+    <div class="scene" aria-hidden="true">
+      <div class="scene-grid"></div>
+      <img
+        class="core-fallback"
+        src="/core.svg"
+        alt=""
+        width="800"
+        height="800"
+      />
+      <canvas id="core-canvas"></canvas>
+      <div class="scene-caption">
+        <span class="status-light"></span><span>OTDS / TRANSFER CORE</span
+        ><span class="scene-coordinate">01 — 06</span>
+      </div>
+    </div>
+    <div class="chapter-indicator" aria-hidden="true">
+      <span id="chapter-number">01</span
+      ><span class="chapter-line"><span id="chapter-progress"></span></span
+      ><span>06</span>
+    </div>
+
+    <main id="main">
+      <div id="story">
+        <section id="hero" class="story-section hero" data-stage="0">
+          <div class="section-content">
+            <p class="eyebrow">
+              <span class="small-line"></span> OPEN SOURCE FILE SHARING
+            </p>
+            <h1>OTDS<span class="title-dot">.</span></h1>
+            <h2 data-i18n="heroTitle">한 번의 전송을 위해.</h2>
+            <p class="section-description" data-i18n="heroDescription">
+              파일은 내 PC에. 링크는 필요한 사람에게.<br />한 브라우저에 한 번의
+              다운로드를 허용하는<br />가볍고 명확한 파일 공유 서비스입니다.
+            </p>
+            <div class="hero-meta">
+              <span>WINDOWS</span><span>SELF-HOSTED</span
+              ><span>MIT LICENSE</span>
+            </div>
+            <a class="scroll-cue" href="#single"
+              ><span class="scroll-arrow">↓</span
+              ><span data-i18n="scroll">스크롤하여 살펴보기</span></a
+            >
+          </div>
+          <span class="section-index">00 / INTRODUCTION</span>
+        </section>
+
+        <section id="single" class="story-section" data-stage="1">
+          <div class="section-content">
+            <p class="eyebrow">01 / ONE LINK. ONE BROWSER.</p>
+            <h2 data-i18n="singleTitle">
+              공유는 간단하게.<br />권한은 한 번만.
+            </h2>
+            <p class="section-description" data-i18n="singleDescription">
+              첫 다운로드를 시작한 브라우저가 링크를 예약합니다. 수신과 검증이
+              완료되면 추가 다운로드는 차단됩니다. 여러 사람이 동시에 요청해도
+              한 브라우저만 예약할 수 있습니다.
+            </p>
+            <div class="detail-note">
+              <span class="note-marker"></span>
+              <p data-i18n="singleNote">
+                링크를 열어보는 것만으로 권한이 소모되지 않습니다.
+              </p>
+            </div>
+            <div class="feature-spec">
+              <strong>1</strong
+              ><span data-i18n="singleSpec">링크당 예약 가능한 브라우저</span>
+            </div>
+          </div>
+          <span class="section-index">01 / ACCESS CONTROL</span>
+        </section>
+
+        <section id="retry" class="story-section" data-stage="2">
+          <div class="section-content">
+            <p class="eyebrow">02 / ROOM TO RETRY</p>
+            <h2 data-i18n="retryTitle">연결이 끊겨도,<br />10분의 여유.</h2>
+            <p class="section-description" data-i18n="retryDescription">
+              취소하거나 연결이 중단되어도 같은 브라우저에서 다시 받을 수
+              있습니다. 최초 다운로드 시작부터 10분. 재시도해도 시간은 늘어나지
+              않습니다.
+            </p>
+            <div class="detail-note">
+              <span class="note-marker"></span>
+              <p data-i18n="retryNote">
+                재시도는 파일 처음부터 시작합니다. 시간이 지나면 관리자가 새
+                링크를 발급합니다.
+              </p>
+            </div>
+            <div class="feature-spec">
+              <strong>10<span>MIN</span></strong
+              ><span data-i18n="retrySpec"
+                >최초 시작 시각 기준 재시도 시간</span
+              >
+            </div>
+          </div>
+          <span class="section-index">02 / RETRY WINDOW</span>
+        </section>
+
+        <section id="integrity" class="story-section" data-stage="3">
+          <div class="section-content">
+            <p class="eyebrow">03 / CHECK EVERY BYTE</p>
+            <h2 data-i18n="integrityTitle">
+              예측하기 어렵게.<br />수신은 정확하게.
+            </h2>
+            <p class="section-description" data-i18n="integrityDescription">
+              안전한 난수에 SHA-256을 적용해 공유 토큰을 만듭니다. 파일을 받은
+              브라우저는 SHA-256으로 원본과 비교한 뒤 완료를 확인합니다.
+            </p>
+            <div class="detail-note">
+              <span class="note-marker"></span>
+              <p data-i18n="integrityNote">
+                SHA-256은 암호화가 아닙니다. 공유 링크를 가진 사람이 다운로드
+                권한을 갖습니다.
+              </p>
+            </div>
+            <div class="feature-spec">
+              <strong class="hash-spec">SHA-256</strong
+              ><span data-i18n="integritySpec"
+                >링크 토큰 생성 · 파일 무결성 검증</span
+              >
+            </div>
+          </div>
+          <span class="section-index">03 / FILE INTEGRITY</span>
+        </section>
+
+        <section id="control" class="story-section" data-stage="4">
+          <div class="section-content">
+            <p class="eyebrow">04 / A CLEAR VIEW</p>
+            <h2 data-i18n="controlTitle">공유의 현황을<br />한눈에.</h2>
+            <p class="section-description" data-i18n="controlDescription">
+              완료와 시도, 재시도를 구분해 확인하세요. 파일별·익명 브라우저별
+              기록과 링크의 남은 시간을 보고, 필요할 때 기록을 초기화하거나 원본
+              파일을 삭제할 수 있습니다.
+            </p>
+            <div class="detail-note">
+              <span class="note-marker"></span>
+              <p data-i18n="controlNote">
+                IP는 통계에 저장하지 않습니다. 예약이나 전송 중인 파일은 삭제할
+                수 없습니다.
+              </p>
+            </div>
+            <div class="feature-spec">
+              <strong>5<span>SEC</span></strong
+              ><span data-i18n="controlSpec">관리자 현황 자동 갱신 간격</span>
+            </div>
+          </div>
+          <span class="section-index">04 / ADMINISTRATION</span>
+        </section>
+
+        <section id="deploy" class="story-section" data-stage="5">
+          <div class="section-content">
+            <p class="eyebrow">05 / YOUR PC. YOUR FILES.</p>
+            <h2 data-i18n="deployTitle">
+              내 PC에서 시작해,<br />링크로 연결하세요.
+            </h2>
+            <p class="section-description" data-i18n="deployDescription">
+              Windows에서 start.cmd를 실행하세요. 파일은 내 PC에 보관하고,
+              Cloudflare 임시 터널이 외부에서 접속할 HTTPS 주소를 제공합니다.
+              계정이나 도메인 없이 시작할 수 있습니다.
+            </p>
+            <div class="detail-note">
+              <span class="note-marker"></span>
+              <p data-i18n="deployNote">
+                서비스를 종료하면 터널도 종료됩니다. 다시 실행하면 공개 주소가
+                바뀝니다.
+              </p>
+            </div>
+            <div class="feature-spec">
+              <strong>90<span>MiB</span></strong
+              ><span data-i18n="deploySpec">파일 하나의 최대 업로드 크기</span>
+            </div>
+          </div>
+          <span class="section-index">05 / LOCAL TO PUBLIC</span>
+        </section>
+      </div>
+
+      <section class="get-started" id="start">
+        <p class="eyebrow">READY WHEN YOU ARE</p>
+        <h2 data-i18n="startTitle">다음 전송은 OTDS로.</h2>
+        <p data-i18n="startDescription">
+          설치부터 첫 번째 공유까지, 함께 시작하세요.
+        </p>
+        <div class="cta-group">
+          <a class="button primary guide-link" href="#guide"
+            ><span data-i18n="useNow">지금 써보기</span
+            ><span aria-hidden="true">↗</span></a
+          ><a
+            class="button secondary"
+            href="https://github.com/movenb3at/OneTimeDownloadService"
+            target="_blank"
+            rel="noopener noreferrer"
+            ><span data-i18n="star">깃헙 리포 별표하기</span
+            ><span aria-hidden="true">↗</span></a
+          >
+        </div>
+        <p class="hosting-note" data-i18n="hostingNote">
+          이 페이지는 소개와 설치 안내를 제공합니다. 다운로드 서비스는 사용자의
+          Windows PC에서 실행됩니다.
+        </p>
+      </section>
+
+      <details id="guide" class="guide">
+        <summary>
+          <span
+            ><span class="eyebrow">GET STARTED / 6 STEPS</span
+            ><span class="guide-heading" data-i18n="guideTitle"
+              >설치 및 실행 가이드</span
+            ></span
+          ><span class="disclosure" aria-hidden="true">+</span>
+        </summary>
+        <div class="guide-body">
+          <p class="guide-intro" data-i18n="guideIntro">
+            별도 호스팅 계정 없이 시작합니다. 첫 실행에는 인터넷 연결이
+            필요합니다.
+          </p>
+          <div class="guide-grid">
+            <article class="guide-card">
+              <span class="step-number">01</span>
+              <h3 data-i18n="step1Title">준비하기</h3>
+              <p data-i18n="step1">
+                Windows 64비트와 Python 3.11 이상이 필요합니다. Python 설치 시
+                ‘Add python.exe to PATH’를 선택하고, 설치 후 아래 명령으로
+                버전을 확인하세요.
+              </p>
+              <a
+                href="https://www.python.org/downloads/windows/"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-link"
+                data-i18n="python"
+                >Python 공식 다운로드 ↗</a
+              >
+              <div class="command">
+                <code>python --version</code
+                ><button
+                  type="button"
+                  class="copy-command"
+                  data-i18n="copy"
+                  aria-label="python --version 복사"
+                  data-command="python --version"
+                >
+                  복사
+                </button>
+              </div>
+            </article>
+            <article class="guide-card">
+              <span class="step-number">02</span>
+              <h3 data-i18n="step2Title">프로젝트 받기</h3>
+              <p data-i18n="step2">
+                main 브랜치의 ZIP 파일을 다운로드하세요. 압축 파일 안에서
+                실행하지 말고, 폴더 전체를 쓰기 가능한 위치에 압축 해제하세요.
+              </p>
+              <a
+                href="https://github.com/movenb3at/OneTimeDownloadService/archive/refs/heads/main.zip"
+                class="text-link"
+                data-i18n="zip"
+                >프로젝트 ZIP 다운로드 ↓</a
+              >
+              <p class="guide-footnote" data-i18n="step2Note">
+                예: 문서 폴더 안의 OneTimeDownloadService
+              </p>
+            </article>
+            <article class="guide-card">
+              <span class="step-number">03</span>
+              <h3 data-i18n="step3Title">실행하기</h3>
+              <p data-i18n="step3">
+                압축을 푼 폴더에서 start.cmd를 더블 클릭하세요. 처음에는
+                프로젝트 전용 Python 가상환경, 패키지와 공식 cloudflared를
+                준비합니다. 실행 창은 열어 두세요.
+              </p>
+              <div class="command">
+                <code>start.cmd</code
+                ><button
+                  type="button"
+                  class="copy-command"
+                  data-i18n="copy"
+                  aria-label="start.cmd 복사"
+                  data-command="start.cmd"
+                >
+                  복사
+                </button>
+              </div>
+              <p class="guide-footnote" data-i18n="step3Note">
+                전역 패키지나 Windows 서비스·방화벽 설정은 변경하지 않습니다.
+              </p>
+            </article>
+            <article class="guide-card">
+              <span class="step-number">04</span>
+              <h3 data-i18n="step4Title">관리자 설정</h3>
+              <p data-i18n="step4">
+                최초 실행의 콘솔에서 12자 이상의 관리자 비밀번호를 입력하고
+                확인하세요. 입력은 화면에 표시되지 않습니다. 콘솔에 표시된 공개
+                관리자 주소를 열어 로그인하세요.
+              </p>
+              <p class="guide-footnote" data-i18n="step4Note">
+                비밀번호는 scrypt 해시로 저장합니다. 관리자 주소를 파일 공유
+                링크 대신 전달하지 마세요.
+              </p>
+            </article>
+            <article class="guide-card">
+              <span class="step-number">05</span>
+              <h3 data-i18n="step5Title">첫 번째 파일 공유</h3>
+              <p data-i18n="step5">
+                관리자에서 최대 90MiB 파일을 업로드하고 공유 링크를 복사하세요.
+                상대방은 공유 화면에서 다운로드 화면으로 이동해 파일을 받습니다.
+                전체 수신과 SHA-256 검증 후 파일 저장을 제공합니다.
+              </p>
+              <p class="guide-footnote" data-i18n="step5Note">
+                주소 끝의 #token= 부분까지 전달하세요. 완료는 브라우저의
+                수신·검증 기준이며 실제 디스크 저장을 확인하지 않습니다.
+              </p>
+            </article>
+            <article class="guide-card">
+              <span class="step-number">06</span>
+              <h3 data-i18n="step6Title">관리와 종료</h3>
+              <p data-i18n="step6">
+                같은 브라우저에서 최초 시작부터 10분간 재시도할 수 있습니다.
+                관리자는 새 링크 발급, 기록 초기화와 파일 삭제를 할 수 있습니다.
+                실행 창에서 Ctrl+C를 누르면 서버와 터널이 종료됩니다.
+              </p>
+              <p class="guide-footnote" data-i18n="step6Note">
+                재실행 후 터널 주소가 바뀌면 링크를 다시 복사하세요. 쿠키나
+                주소가 달라져 재시도할 수 없다면 새 링크가 필요합니다. 파일은
+                자동 삭제되지 않습니다.
+              </p>
+            </article>
+          </div>
+          <div class="guide-more">
+            <p data-i18n="moreGuide">
+              로컬 실행, 비밀번호 재설정, 데이터 백업과 자세한 정책은 저장소
+              사용 설명서에서 확인하세요.
+            </p>
+            <a
+              class="text-link"
+              href="https://github.com/movenb3at/OneTimeDownloadService#readme"
+              target="_blank"
+              rel="noopener noreferrer"
+              data-i18n="readme"
+              >전체 사용 설명서 ↗</a
+            >
+          </div>
+          <p id="copy-status" role="status" aria-live="polite"></p>
+        </div>
+      </details>
+    </main>
+    <footer>
+      <a class="footer-brand" href="#">OTDS.</a>
+      <p>© 2026 movenb3at <span>MIT License</span></p>
+      <a
+        href="https://github.com/movenb3at/OneTimeDownloadService"
+        target="_blank"
+        rel="noopener noreferrer"
+        >GitHub ↗</a
+      >
+    </footer>
+  </body>
+</html>

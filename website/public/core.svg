@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" fill="none" role="img" aria-labelledby="title">
+  <title id="title">OTDS file transfer core</title>
+  <defs>
+    <linearGradient id="metal" x1="180" y1="200" x2="570" y2="600" gradientUnits="userSpaceOnUse"><stop stop-color="#7e9080"/><stop offset=".25" stop-color="#36483a"/><stop offset=".7" stop-color="#17251b"/><stop offset="1" stop-color="#5f7661"/></linearGradient>
+    <linearGradient id="face" x1="250" y1="250" x2="500" y2="580" gradientUnits="userSpaceOnUse"><stop stop-color="#526c51"/><stop offset="1" stop-color="#17211a"/></linearGradient>
+    <linearGradient id="file" x1="338" y1="281" x2="486" y2="482"><stop stop-color="#d5eebd"/><stop offset="1" stop-color="#89bc67"/></linearGradient>
+    <radialGradient id="halo"><stop stop-color="#91ca7022"/><stop offset="1" stop-color="#91ca7000"/></radialGradient>
+  </defs>
+  <circle cx="405" cy="410" r="345" fill="url(#halo)"/>
+  <g transform="translate(400 400) rotate(-28) skewX(12) translate(-400 -400)">
+    <ellipse cx="400" cy="400" rx="280" ry="235" stroke="#638153" stroke-opacity=".3"/>
+    <ellipse cx="400" cy="400" rx="255" ry="214" stroke="#b4de91" stroke-width="2" stroke-dasharray="2 23"/>
+    <path d="M210 282 280 182 503 192 599 306 589 509 482 616 268 600 177 477Z" fill="url(#metal)" stroke="#9bad94" stroke-width="2"/>
+    <path d="m280 182-3 93m226-83-42 104m138 10-84 46m74 157-91-27m-16 134-56-98m-158 82 21-93m-112-30 78-46m-45-149 75 42" stroke="#7e967b" stroke-width="3"/>
+    <path d="m223 310 32-49m306 86 2 63m-117 176-57 1m-172-139-13-63" stroke="#c0e99b" stroke-width="5"/>
+    <ellipse cx="390" cy="406" rx="169" ry="151" fill="#101a13" stroke="#92a68b" stroke-width="9"/>
+    <ellipse cx="390" cy="406" rx="153" ry="136" fill="url(#face)" stroke="#c0e99b" stroke-width="2"/>
+    <ellipse cx="390" cy="406" rx="184" ry="164" stroke="#54684f" stroke-width="3" stroke-dasharray="4 22"/>
+    <path d="m301 310 31-25 140 17 29 152-36 40-141-24Z" fill="#192c1a" stroke="#62795a"/>
+    <path d="m319 291 128 7 43 47-14 136-151-11Z" fill="url(#file)" stroke="#d2eebd" stroke-width="2"/>
+    <path d="m447 298-5 48 48-1" fill="#6a9a54"/>
+    <path d="m342 346 69 4m-72 19 93 6m-96 17 53 4" stroke="#31502b" stroke-width="5"/>
+    <path d="m397 413-3 33m-13-15 13 15 16-12m-30 19 29 2" stroke="#31502b" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+    <g fill="#18241a" stroke="#819479" stroke-width="2"><circle cx="276" cy="217" r="6"/><circle cx="493" cy="229" r="6"/><circle cx="557" cy="318" r="6"/><circle cx="549" cy="496" r="6"/><circle cx="463" cy="574" r="6"/><circle cx="283" cy="563" r="6"/><circle cx="216" cy="455" r="6"/><circle cx="241" cy="300" r="6"/></g>
+  </g>
+  <path d="M525 591h100v-60m-400-287H147v70" stroke="#668058" stroke-width="1"/>
+  <circle cx="625" cy="531" r="4" fill="#c0e99b"/><circle cx="147" cy="314" r="4" fill="#c0e99b"/>
+</svg>
