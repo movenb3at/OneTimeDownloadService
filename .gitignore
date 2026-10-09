@@ -1,0 +1,10 @@
+.venv/
+bin/
+data/
+.test-artifacts/
+__pycache__/
+*.pyc
+.pytest_cache/
+*.log
+website/node_modules/
+website/dist/

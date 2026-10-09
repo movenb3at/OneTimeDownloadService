@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>파일 공유 · OTDS</title>
+  <link rel="icon" href="/assets/favicon.ico" sizes="16x16 32x32 48x48" type="image/x-icon">
+  <link rel="icon" href="/assets/favicon.svg" sizes="any" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/app.css">
+  <script src="/assets/common.js" defer></script>
+  <script src="/assets/share.js" defer></script>
+</head>
+<body>
+  <header class="site-header"><a class="brand" href="/index.html"><span class="brand-mark" aria-hidden="true"></span>OTDS<span class="brand-subtitle">파일 공유</span></a><span class="header-note">필요한 파일을, 한 번만.</span></header>
+  <main class="public-main">
+    <section class="intro"><p class="eyebrow">ONE TIME TRANSFER</p><h1>파일을 건네는<br>가장 짧은 방법.</h1><p class="lead">이 링크는 한 브라우저에서만 사용할 수 있습니다.<br>파일 정보를 확인하고 다운로드 화면으로 이동해 주세요.</p></section>
+    <section class="file-card" aria-labelledby="file-title">
+      <div class="card-top"><span class="file-symbol" aria-hidden="true">FILE</span><span class="badge" id="state-badge">확인 중</span></div>
+      <h2 id="file-title">공유 파일을 확인하고 있습니다</h2>
+      <p class="file-meta" id="file-meta">잠시만 기다려 주세요.</p>
+      <div class="notice" id="message" role="status" aria-live="polite">링크 정보를 불러오고 있습니다.</div>
+      <div class="actions"><a class="button primary disabled" id="download-link" aria-disabled="true">다운로드 화면으로</a><button class="button secondary" id="copy-link" type="button" disabled>공유 링크 복사</button></div>
+      <p class="fine-print">이 화면을 열거나 링크를 복사해도 다운로드 권한은 사용되지 않습니다.</p>
+    </section>
+    <section class="steps" aria-label="이용 순서"><div><span>01</span><p>파일 정보 확인</p></div><div><span>02</span><p>다운로드 시작</p></div><div><span>03</span><p>검증 후 저장</p></div></section>
+  </main>
+  <footer class="site-footer"><span>OTDS · 일회성 다운로드</span><span>SHA-256 파일 검증</span></footer>
+</body>
+</html>

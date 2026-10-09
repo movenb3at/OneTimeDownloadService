@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>관리자 · OTDS</title>
+  <link rel="icon" href="/assets/favicon.ico" sizes="16x16 32x32 48x48" type="image/x-icon">
+  <link rel="icon" href="/assets/favicon.svg" sizes="any" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/app.css">
+  <script src="/assets/common.js" defer></script>
+  <script src="/assets/admin.js" defer></script>
+</head>
+<body>
+  <header class="site-header"><a class="brand" href="/admin.html"><span class="brand-mark" aria-hidden="true"></span>OTDS<span class="brand-subtitle">관리자</span></a><button class="button small secondary" id="logout" type="button" hidden>로그아웃</button></header>
+  <main class="admin-main">
+    <section class="login-card" id="login-panel"><p class="eyebrow">ADMIN ACCESS</p><h1>파일 공유를<br>관리하세요.</h1><p class="lead">최초 실행 시 설정한 관리자 비밀번호로 로그인해 주세요.</p><form id="login-form"><label for="password">관리자 비밀번호</label><input id="password" name="password" type="password" autocomplete="current-password" required maxlength="1024"><button class="button primary" id="login-button" type="submit">로그인</button></form><p class="notice" id="login-message" role="status" aria-live="polite">관리자 전용 화면입니다.</p></section>
+    <div id="dashboard" hidden>
+      <section class="dashboard-heading"><div><p class="eyebrow">TRANSFER OVERVIEW</p><h1>공유 현황</h1><p class="muted">완료된 수신과 전송 시도를 따로 집계합니다.</p></div><p class="updated" id="updated">불러오는 중</p></section>
+      <div class="notice" id="admin-message" role="status" aria-live="polite" hidden></div>
+      <section class="metrics" aria-label="전체 통계">
+        <div class="metric"><span>수신 완료</span><strong id="metric-completed">0</strong><small>검증 완료된 링크</small></div>
+        <div class="metric"><span>전송 시도</span><strong id="metric-attempts">0</strong><small>실제 파일 전송 요청</small></div>
+        <div class="metric"><span>재시도</span><strong id="metric-retries">0</strong><small>같은 링크의 추가 전송</small></div>
+        <div class="metric"><span>예약 중</span><strong id="metric-reserved">0</strong><small>10분 내 수신 가능</small></div>
+        <div class="metric"><span>접속 브라우저</span><strong id="metric-devices">0</strong><small>공유 화면 방문 기준</small></div>
+      </section>
+      <section class="panel records-panel"><div><h2>기록 관리</h2><p class="muted">수신 완료·전송 시도·재시도 통계와 기기별·다운로드 기록을 초기화합니다. 파일, 공유 링크와 현재 예약은 유지됩니다.</p><p class="fine-print" id="statistics-reset">전체 기간의 기록을 표시하고 있습니다.</p></div><button class="button secondary danger" id="clear-history" type="button">전체 기록 삭제</button></section>
+      <div class="admin-grid">
+        <section class="panel"><div class="panel-title"><h2>파일 업로드</h2><span class="muted">최대 90MiB</span></div><form id="upload-form"><label class="file-picker" for="upload-file"><span class="file-symbol" aria-hidden="true">FILE</span><strong id="selected-file">파일을 선택해 주세요</strong><span class="muted">파일은 서버 PC에 보관됩니다.</span><input id="upload-file" name="file" type="file" required></label><button class="button primary" id="upload-button" type="submit">업로드하고 링크 발급</button><progress id="upload-progress" max="100" value="0" hidden aria-label="업로드 진행률"></progress><p class="muted" id="upload-status" role="status"></p></form><div class="issued-link" id="issued-link" hidden><label for="latest-link">발급된 공유 링크</label><input id="latest-link" readonly><button class="button secondary small" id="copy-latest" type="button">링크 복사</button></div></section>
+        <section class="panel tunnel-panel"><div class="panel-title"><h2>접속 주소</h2><span class="badge" id="tunnel-badge">확인 중</span></div><label>공개 주소</label><p class="tunnel-url" id="public-url">확인 중</p><p class="muted" id="tunnel-message"></p><div class="divider"></div><p class="fine-print">임시 터널을 새로 시작하면 공개 주소가 바뀝니다. 아래 링크 목록에서 현재 주소로 다시 복사해 주세요.</p><p class="fine-print">같은 기기도 다른 브라우저, 시크릿 모드 또는 새 터널 주소에서는 별도로 표시될 수 있습니다.</p></section>
+      </div>
+      <section class="panel"><div class="panel-title"><h2>파일별 현황</h2><span class="muted" id="file-count"></span></div><p class="fine-print">다운로드 여부와 관계없이 파일을 삭제할 수 있습니다. 현재 다운로드 예약이나 전송이 있는 파일은 삭제할 수 없으며, 파일을 삭제해도 기존 통계와 기록은 유지됩니다.</p><div class="table-wrap"><table><thead><tr><th>파일</th><th>크기</th><th>완료</th><th>전송 시도</th><th>링크</th><th>관리</th></tr></thead><tbody id="file-rows"></tbody></table></div></section>
+      <section class="panel"><div class="panel-title"><h2>공유 링크</h2><span class="muted">링크마다 한 브라우저</span></div><p class="fine-print">남은 시간은 최초 다운로드 시작부터 10분입니다. 시작 전에는 시간 제한이 없으며, 재시도해도 시간이 연장되지 않습니다.</p><div class="table-wrap"><table><thead><tr><th>파일 · 발급 시각</th><th>상태</th><th>남은 시간</th><th>브라우저</th><th>전송 시도</th><th>관리</th></tr></thead><tbody id="link-rows"></tbody></table></div></section>
+      <section class="panel"><div class="panel-title"><h2>기기별 현황</h2><span class="muted">쿠키와 브라우저 정보 기준</span></div><div class="table-wrap"><table><thead><tr><th>브라우저 ID</th><th>기기</th><th>OS · 브라우저</th><th>마지막 방문</th><th>전송 시도</th><th>완료</th></tr></thead><tbody id="device-rows"></tbody></table></div></section>
+      <section class="panel"><div class="panel-title"><h2>최근 다운로드 기록</h2><span class="muted">최근 200건</span></div><div class="table-wrap"><table><thead><tr><th>시작 시각</th><th>파일</th><th>브라우저</th><th>상태</th><th>서버 처리량</th></tr></thead><tbody id="attempt-rows"></tbody></table></div></section>
+    </div>
+  </main>
+  <footer class="site-footer"><span>OTDS · 관리자</span><span>10분 재시도 · SHA-256 검증</span></footer>
+</body>
+</html>

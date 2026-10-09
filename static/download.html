@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>다운로드 · OTDS</title>
+  <link rel="icon" href="/assets/favicon.ico" sizes="16x16 32x32 48x48" type="image/x-icon">
+  <link rel="icon" href="/assets/favicon.svg" sizes="any" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/app.css">
+  <script src="/assets/common.js" defer></script>
+  <script src="/assets/download.js" defer></script>
+</head>
+<body>
+  <header class="site-header"><a class="brand" id="back-link" href="/index.html"><span class="brand-mark" aria-hidden="true"></span>OTDS<span class="brand-subtitle">파일 다운로드</span></a><span class="header-note">수신부터 검증까지.</span></header>
+  <main class="public-main">
+    <section class="intro compact"><p class="eyebrow">READY TO DOWNLOAD</p><h1>안전하게 받고,<br>확인하고 저장하세요.</h1><p class="lead">처음 시작한 브라우저에서 10분 동안 재시도할 수 있습니다.<br>파일 전체를 받은 뒤 SHA-256으로 검증합니다.</p></section>
+    <section class="file-card" aria-labelledby="file-title">
+      <div class="card-top"><span class="file-symbol" aria-hidden="true">FILE</span><span class="badge" id="state-badge">확인 중</span></div>
+      <h2 id="file-title">다운로드 정보를 확인하고 있습니다</h2><p class="file-meta" id="file-meta">잠시만 기다려 주세요.</p>
+      <div class="notice" id="message" role="status" aria-live="polite">링크 정보를 불러오고 있습니다.</div>
+      <div class="progress-area" id="progress-area" hidden><div class="progress-label"><span id="progress-text">준비 중</span><span id="progress-percent">0%</span></div><progress id="progress" max="100" value="0" aria-label="파일 수신 진행률"></progress></div>
+      <p class="reservation" id="reservation" hidden></p>
+      <div class="actions"><button class="button primary" id="start-download" type="button" disabled>다운로드 시작</button><button class="button secondary" id="cancel-download" type="button" hidden>취소</button><button class="button secondary" id="save-file" type="button" hidden>파일 저장</button></div>
+      <details class="hash-details"><summary>파일 검증 정보</summary><code id="file-hash">파일 정보를 확인한 뒤 표시합니다.</code></details>
+      <p class="fine-print">수신과 검증이 끝나면 링크가 사용 완료됩니다. 저장 대화상자를 취소하셔도 권한은 복구되지 않습니다.</p>
+    </section>
+  </main>
+  <footer class="site-footer"><span>OTDS · 일회성 다운로드</span><span>재시도 제한 10분</span></footer>
+</body>
+</html>
