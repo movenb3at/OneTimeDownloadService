@@ -125,7 +125,7 @@ cloudflared가 로컬 서버에 연결하고 임시 trycloudflare.com 주소를 
 
 브라우저 검증은 별도 임시 데이터와 임의 비밀번호를 사용하고 종료 시 검증 서버와 터널을 정리합니다. 실제 운영 데이터는 사용하지 않습니다. 기본 검증 포트는 8091이며 OTD_TEST_PORT 환경변수로 바꿀 수 있습니다.
 
-검증 보고서와 데스크톱·모바일 스크린샷은 .test-artifacts/browser에 저장합니다. 최종 검증 내역은 VALIDATION.md에서 확인할 수 있습니다.
+검증 보고서와 데스크톱·모바일 스크린샷은 .test-artifacts/browser에 저장합니다.
 
 ## 소개 페이지 개발 / Website development
 
