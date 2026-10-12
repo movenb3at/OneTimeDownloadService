@@ -4,8 +4,9 @@ const guide = document.getElementById("guide");
 let core;
 const language = createLanguageController(() => core?.refresh());
 const motion = window.matchMedia("(prefers-reduced-motion: reduce)");
+// Touch input alone does not distinguish a phone from a Windows PC.
 const compact = window.matchMedia(
-  "(max-width: 700px), (hover: none) and (pointer: coarse)",
+  "(max-width: 700px), (max-width: 1000px) and (hover: none) and (pointer: coarse)",
 );
 let syncingGuide = false;
 

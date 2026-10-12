@@ -308,6 +308,43 @@ try {
   assert.equal(new URL(page.url()).hash, "#main");
   check("키보드 본문 바로가기");
 
+  const touchDesktop = await browser.newContext({
+    viewport: { width: 1920, height: 1200 },
+    hasTouch: true,
+  });
+  const touchPC = await touchDesktop.newPage();
+  record(touchPC);
+  await touchPC.goto(base);
+  assert.equal(
+    await touchPC.evaluate(() => matchMedia("(pointer: coarse)").matches),
+    true,
+  );
+  await touchPC.waitForFunction(
+    () => document.querySelector(".scene").dataset.mode === "webgl",
+  );
+  assert.equal(await touchPC.locator(".scene").isVisible(), true);
+  assert.equal(await touchPC.locator(".core-fallback").isVisible(), false);
+  assert.equal(
+    await touchPC
+      .locator("#core-canvas")
+      .evaluate((element) => getComputedStyle(element).opacity),
+    "1",
+  );
+  await capture(touchPC, "hero-touch-desktop");
+  await jump(touchPC, "integrity");
+  const touchStage = Number(
+    await touchPC.locator("#core-canvas").getAttribute("data-stage"),
+  );
+  assert.ok(
+    Math.abs(touchStage - 3) < 0.15,
+    `Touch PC integrity stage: ${touchStage}`,
+  );
+  assert.ok(
+    Number(await touchPC.locator("#core-canvas").getAttribute("data-frames")) > 0,
+  );
+  check("1920×1200 터치 지원 PC에서 실제 모델 표시와 스크롤 동기화");
+  await touchDesktop.close();
+
   const mobile = await browser.newContext({
     viewport: { width: 390, height: 844 },
     isMobile: true,

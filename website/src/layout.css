@@ -39,7 +39,8 @@
     margin-right: 10px;
   }
 }
-@media (max-width: 700px), (hover: none) and (pointer: coarse) {
+@media (max-width: 700px),
+  (max-width: 1000px) and (hover: none) and (pointer: coarse) {
   .scene {
     display: none;
   }
@@ -197,7 +198,7 @@
   }
 }
 @media (max-height: 740px) and (max-width: 700px),
-  (max-height: 740px) and (hover: none) and (pointer: coarse) {
+  (max-height: 740px) and (max-width: 1000px) and (hover: none) and (pointer: coarse) {
   .story-section {
     min-height: 850px;
   }
